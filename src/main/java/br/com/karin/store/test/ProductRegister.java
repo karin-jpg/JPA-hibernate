@@ -26,6 +26,15 @@ public class ProductRegister {
 		em.getTransaction().begin();
 		
 		categoryDao.register(category);
+		
+		category.setName("Iphones");
+		em.flush();
+		em.clear();
+		
+		category = em.merge(category);
+		category.setName("aaaa");
+		em.flush();
+		
 		productDao.register(product);
 		
 		em.getTransaction().commit();
