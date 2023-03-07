@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 
 import br.com.karin.store.dao.ProductDAO;
 import br.com.karin.store.model.Product;
+import br.com.karin.store.util.JPAUtil;
 
 public class ProductRegister {
 
@@ -18,13 +19,13 @@ public class ProductRegister {
 		product.setDescription("A new computer");
 		product.setPrice(new BigDecimal("99.9"));
 		
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("store");
-		EntityManager em = factory.createEntityManager();
-		
+		EntityManager em = JPAUtil.getEntityManager();
 		ProductDAO productDao = new ProductDAO(em);
 		
 		em.getTransaction().begin();
+		
 		productDao.register(product);
+		
 		em.getTransaction().commit();
 		em.close();
 	}
