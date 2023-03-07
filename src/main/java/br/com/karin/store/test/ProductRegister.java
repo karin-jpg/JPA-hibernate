@@ -13,7 +13,10 @@ import br.com.karin.store.util.JPAUtil;
 public class ProductRegister {
 
 	public static void main(String[] args) {
+		
 		Category category = new Category("Smartphone");
+		Category testCategory = new Category("Test");
+		
 		Product product = new Product("Iphone 12", "A new smartphone", new BigDecimal("99.9"), category);
 		
 		
@@ -26,13 +29,17 @@ public class ProductRegister {
 		em.getTransaction().begin();
 		
 		categoryDao.register(category);
+		categoryDao.register(testCategory);
 		
-		category.setName("Iphones");
+		testCategory.setName("Iphones");
 		em.flush();
 		em.clear();
 		
-		category = em.merge(category);
-		category.setName("aaaa");
+		testCategory = em.merge(testCategory);
+		testCategory.setName("aaaa");
+		em.flush();
+		
+		em.remove(testCategory);
 		em.flush();
 		
 		productDao.register(product);
