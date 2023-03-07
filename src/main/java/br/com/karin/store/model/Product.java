@@ -22,6 +22,7 @@ public class Product {
 	private String description;
 	private BigDecimal price;
 	private LocalDate registerDate = LocalDate.now();
+	
 	@Enumerated(EnumType.STRING)
 	private Category category;
 	
