@@ -60,6 +60,10 @@ public class ProductRegister {
 			System.out.println();			
 		});
 		
+		
+		BigDecimal price = productDao.getPriceByName("Watermelon");
+		System.out.println(price);
+		
 	}
 
 	private static void createProduct() {
