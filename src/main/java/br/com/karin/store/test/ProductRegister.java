@@ -14,33 +14,24 @@ public class ProductRegister {
 
 	public static void main(String[] args) {
 		
+		createProduct();
+	}
+
+	private static void createProduct() {
 		Category category = new Category("Smartphone");
-		Category testCategory = new Category("Test");
-		
+		Category testCategory = new Category("IPhone");
 		Product product = new Product("Iphone 12", "A new smartphone", new BigDecimal("99.9"), category);
 		
 		
 		EntityManager em = JPAUtil.getEntityManager();
 		
 		CategoryDAO categoryDao = new CategoryDAO(em);
-		
 		ProductDAO productDao = new ProductDAO(em);
 		
 		em.getTransaction().begin();
 		
 		categoryDao.register(category);
 		categoryDao.register(testCategory);
-		
-		testCategory.setName("Iphones");
-		em.flush();
-		em.clear();
-		
-		testCategory = em.merge(testCategory);
-		testCategory.setName("aaaa");
-		em.flush();
-		
-		em.remove(testCategory);
-		em.flush();
 		
 		productDao.register(product);
 		
