@@ -37,8 +37,17 @@ public class ProductRegister {
 			System.out.println(p.getDescription());
 			System.out.println(p.getPrice());
 			System.out.println(p.getCategory().getName());
-			System.out.println();
-			
+			System.out.println();			
+		});
+		
+		products = productDao.getByName("Watermelon");
+		
+		products.stream().forEach(p -> {
+			System.out.println(p.getName());
+			System.out.println(p.getDescription());
+			System.out.println(p.getPrice());
+			System.out.println(p.getCategory().getName());
+			System.out.println();			
 		});
 		
 	}

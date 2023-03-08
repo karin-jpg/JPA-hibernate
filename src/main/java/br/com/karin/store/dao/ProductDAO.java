@@ -27,4 +27,11 @@ public class ProductDAO {
 		return em.createQuery(jpql, Product.class).getResultList();
 	}
 	
+	public List<Product> getByName(String name) {
+		String jpql = "SELECT p FROM Product p WHERE p.name = :name";
+		return em.createQuery(jpql, Product.class)
+				.setParameter("name", name)
+				.getResultList();
+	}
+	
 }
