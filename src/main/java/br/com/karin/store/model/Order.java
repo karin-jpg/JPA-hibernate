@@ -2,12 +2,15 @@ package br.com.karin.store.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,14 +24,19 @@ public class Order {
 	private LocalDate date = LocalDate.now();
 	@ManyToOne
 	private Client client;
-	@ManyToOne
-	private OrderedItens orderedItens;
+	@OneToMany(mappedBy = "pedido")
+	private List<OrderedItem> orderedItens = new ArrayList<OrderedItem>();
 
 	public Order() {
 	}
 
 	public Order(Client client) {
 		this.client = client;
+	}
+	
+	public void addOrderedItem(OrderedItem item) {
+		item.setOrder(this);
+		this.orderedItens.add(item);
 	}
 
 	public BigDecimal getTotalValue() {

@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "ordered_itens")
-public class OrderedItens {
+public class OrderedItem {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,12 +23,17 @@ public class OrderedItens {
 	@ManyToOne
 	private Order order;
 
-	public OrderedItens() {
+	public OrderedItem() {
 	}
 
-	public OrderedItens(int quantity, Product product, Order order) {
+	public OrderedItem(int quantity, Product product, Order order) {
 		this.quantity = quantity;
 		this.product = product;
+		this.order = order;
+		this.unitPrice = product.getPrice();
+	}
+	
+	public void setOrder(Order order) {
 		this.order = order;
 	}
 
