@@ -25,8 +25,6 @@ public class Product {
 	private LocalDate registerDate = LocalDate.now();
 	@ManyToOne
 	private Category category;
-	@OneToMany
-	private List<OrderedItens> orderedItens;
 
 	public Product() {
 	}
