@@ -19,9 +19,10 @@ public class Order {
 	private Long id;
 	private BigDecimal totalValue;
 	private LocalDate date = LocalDate.now();
-	
 	@ManyToOne
 	private Client client;
+	@ManyToOne
+	private OrderedItens orderedItens;
 
 	public Order() {
 	}
