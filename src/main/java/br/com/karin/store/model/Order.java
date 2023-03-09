@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,7 +25,7 @@ public class Order {
 	private LocalDate date = LocalDate.now();
 	@ManyToOne
 	private Client client;
-	@OneToMany(mappedBy = "pedido")
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
 	private List<OrderedItem> orderedItens = new ArrayList<OrderedItem>();
 
 	public Order() {
