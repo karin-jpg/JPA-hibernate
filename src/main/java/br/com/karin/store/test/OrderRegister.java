@@ -31,6 +31,7 @@ public class OrderRegister {
 		Client client = clientDao.getById(1l);
 		Order order = new Order(client);
 		order.addOrderedItem(new OrderedItem(2, product, order));
+		order.addOrderedItem(new OrderedItem(2, productDao.getById(2l), order));
 		
 		OrderDAO orderDao = new OrderDAO(em);
 		
@@ -45,6 +46,7 @@ public class OrderRegister {
 		Category category = new Category("Smartphone");
 		Client client = new Client("Karinhos", "36698547523");
 		Product product = new Product("Iphone 12", "A new smartphone", new BigDecimal("99.9"), category);
+		Product otherProduct = new Product("Watermelon", "A new watermelom", new BigDecimal("9999.9"), category);
 		
 		
 		EntityManager em = JPAUtil.getEntityManager();
@@ -57,6 +59,7 @@ public class OrderRegister {
 		
 		categoryDao.register(category);
 		productDao.register(product);
+		productDao.register(otherProduct);
 		clientDao.register(client);
 		
 		em.getTransaction().commit();
