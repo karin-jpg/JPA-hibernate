@@ -2,6 +2,7 @@ package br.com.karin.store.model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +17,7 @@ public class OrderedItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(name = "unit_price")
 	private BigDecimal unitPrice;
 	private int quantity;
 	@ManyToOne
